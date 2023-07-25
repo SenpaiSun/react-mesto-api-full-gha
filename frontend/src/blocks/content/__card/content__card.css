@@ -1,0 +1,7 @@
+.content__card {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr minmax(min-content, max-content);
+  width: 282px;
+  border-radius: 3px 3px 3px 3px;
+}

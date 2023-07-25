@@ -1,0 +1,24 @@
+.profile__added {
+  max-width: 150px;
+  max-height: 50px;
+  background-color: black;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  background-image: url(../../../image/Vector_added.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 35px 0 0;
+  padding: 0;
+}
+
+.profile__added:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__added {
+    margin: 0;
+    max-width: 282px;
+  }
+}

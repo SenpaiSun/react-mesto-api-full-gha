@@ -1,0 +1,17 @@
+.popup__note {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  width: 358px;
+  height: 27px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__note {
+    width: 238px;
+    font-size: 14px;
+    margin: 0 auto;
+  }
+}

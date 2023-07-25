@@ -1,0 +1,4 @@
+.content__like-info {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,22 @@
+.profile__info-edit {
+  background-color: black;
+  background-image: url(../../../image/Vector_user_edit.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  align-self: center;
+  border: 1px solid #FFFFFF;
+}
+
+.profile__info-edit:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info-edit {
+    width: 18px;
+    height: 18px;
+  }
+}

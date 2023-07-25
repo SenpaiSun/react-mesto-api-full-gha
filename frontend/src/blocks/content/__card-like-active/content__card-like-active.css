@@ -1,0 +1,15 @@
+.content__card-like-active {
+  width: 22px;
+  height: 19px;
+  align-self: center;
+  justify-self: center;
+  margin: 23px 20px 0 0;
+  border: none;
+  background-color: #FFFFFF;
+  background-image: url(../../../image/vector__like_active.svg);
+}
+
+.content__card-like-active:hover {
+  opacity: 40%;
+  cursor: pointer;
+}

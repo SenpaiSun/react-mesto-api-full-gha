@@ -1,0 +1,22 @@
+.profile__info-note {
+  color: #FFFFFF;
+  max-width: 336px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+@media screen and (max-width: 768px) {
+  .profile__info-note {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    justify-content: center;
+    max-width: 282px;
+  }
+}

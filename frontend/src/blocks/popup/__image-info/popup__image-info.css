@@ -1,0 +1,6 @@
+.popup__image-info {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin: 90px auto 68px;
+}
