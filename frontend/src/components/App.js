@@ -202,7 +202,7 @@ function App() {
   async function handleUserLogin(email, password) {
     try {
       const res = await userLogin(email, password);
-      if (res.token) {
+      if (res.token || isStateTooltip) {
         localStorage.setItem('token', res.token);
         setLoggedIn(true);
         setEmail(email);

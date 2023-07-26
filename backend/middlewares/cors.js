@@ -4,6 +4,7 @@ const allowedCors = [
   'http://api.mesto.senpaisun.nomoredomains.xyz',
   'https://api.mesto.senpaisun.nomoredomains.xyz',
   'http://localhost:3000',
+  'http://localhost:5000',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';

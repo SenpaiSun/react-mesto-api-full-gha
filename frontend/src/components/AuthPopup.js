@@ -18,7 +18,6 @@ export default function AuthPopup(props) {
   function handleSubmit(e) {
     if (props.onRegister) {
       e.preventDefault()
-      console.log('reg')
       props.onRegister(emailUser, passwordUser)
     }
     if (props.onLogin) {
