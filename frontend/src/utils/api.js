@@ -7,7 +7,7 @@ class Api {
   setHeaders(headers) {
     this._headers = headers;
   }
-  
+
   // Проверяем на ошибки запросы
   _checkError(res) {
       if (res.ok) {
@@ -109,7 +109,7 @@ class Api {
   }
 }
 
-const api = new Api({baseUrl: 'http://localhost:3000', headers: {
+const api = new Api({baseUrl: 'http://api.mesto.senpaisun.nomoredomains.xyz', headers: {
   authorization: `Bearer ${localStorage.getItem('token')}`,
   "Content-Type": "application/json"
 }})
