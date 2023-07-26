@@ -6,13 +6,13 @@ const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cardsRouter = require('./routes/cards');
 const usersRouter = require('./routes/users');
-const { cors } = require('./middlewares/cors');
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -22,13 +22,7 @@ const limiter = rateLimit({
   standardHeaders: true,
 });
 mongoose.connect('mongodb://localhost:27017/mestodb', { family: 4 });
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-app.use(cors);
+app.use(cors());
 app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
