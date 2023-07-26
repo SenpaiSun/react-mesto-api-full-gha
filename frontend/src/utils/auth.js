@@ -1,4 +1,4 @@
-const adress = 'http://localhost:3000'
+const adress = 'http://api.mesto.senpaisun.nomoredomains.xyz'
 
 function checkError(res) {
       if (res.ok) {
