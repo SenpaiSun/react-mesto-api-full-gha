@@ -182,7 +182,6 @@ function App() {
     userRegister(email, password)
       .then((res) => {
         if (res) {
-          setLoggedIn(true)
           infoTooltipAprove()
         }
       })
@@ -203,14 +202,13 @@ function App() {
   async function handleUserLogin(email, password) {
     try {
       const res = await userLogin(email, password);
-      if (res.token || isStateTooltip) {
+      if (res.token) {
         localStorage.setItem('token', res.token);
         setLoggedIn(true);
         setEmail(email);
         await setCurrentUser(res.user);
         setTokenAndHeaders(res.token);
         navigate('/', { replace: true });
-        console.log(1);
       } else {
         localStorage.removeItem('token');
         setLoggedIn(false);
