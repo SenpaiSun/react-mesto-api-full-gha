@@ -1,4 +1,4 @@
-const adress = 'http://api.mesto.senpaisun.nomoredomains.xyz'
+const adress = 'https://api.mesto.senpaisun.nomoredomains.xyz'
 
 function checkError(res) {
       if (res.ok) {

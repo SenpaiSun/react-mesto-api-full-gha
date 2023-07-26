@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.20.220
+IP-адрес 84.201.140.20
 
 Frontend  https://mesto.senpaisun.nomoredomains.xyz
 

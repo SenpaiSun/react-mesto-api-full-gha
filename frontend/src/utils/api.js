@@ -109,7 +109,7 @@ class Api {
   }
 }
 
-const api = new Api({baseUrl: 'http://api.mesto.senpaisun.nomoredomains.xyz', headers: {
+const api = new Api({baseUrl: 'https://api.mesto.senpaisun.nomoredomains.xyz', headers: {
   authorization: `Bearer ${localStorage.getItem('token')}`,
   "Content-Type": "application/json"
 }})
