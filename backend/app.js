@@ -22,7 +22,12 @@ const limiter = rateLimit({
   standardHeaders: true,
 });
 mongoose.connect('mongodb://localhost:27017/mestodb', { family: 4 });
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }),
+);
 app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
