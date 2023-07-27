@@ -5,18 +5,14 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     default: 'Жак-Ив Кусто',
-    validate: {
-      validator: (value) => value.length >= 2 && value.length <= 30,
-      message: 'Имя пользователя должно быть от 2 до 30 символов!',
-    },
+    minlength: 2,
+    maxlength: 30,
   },
   about: {
     type: String,
     default: 'Исследователь',
-    validate: {
-      validator: (value) => value.length >= 2 && value.length <= 30,
-      message: 'Информация о пользователе должна быть от 2 до 30 символов!',
-    },
+    minlength: 2,
+    maxlength: 30,
   },
   avatar: {
     type: String,

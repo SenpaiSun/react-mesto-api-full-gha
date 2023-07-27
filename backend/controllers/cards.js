@@ -1,6 +1,5 @@
 const ValidationError = require('../errors/ValidationError');
 const NotFoundError = require('../errors/NotFoundError');
-const InternalServerError = require('../errors/InternalServerError');
 const Card = require('../models/card');
 const ForbiddenError = require('../errors/ForbiddenError');
 
@@ -22,7 +21,7 @@ module.exports.createCard = (req, res, next) => {
           ),
         );
       }
-      return next(new InternalServerError('Произошла ошибка на сервере'));
+      return next(err);
     });
 };
 
@@ -35,18 +34,18 @@ module.exports.deleteCard = (req, res, next) => {
       if (card.owner.toString() !== req.user._id.toString()) {
         return next(new ForbiddenError('Нельзя удалить чужую карточку!'));
       }
-      return Card.findByIdAndRemove(req.params.cardId);
+      return card.deleteOne();
     })
     .then((remove) => res.send(remove))
     .catch((err) => {
-      if (err.kind === 'ObjectId') {
+      if (err.name === 'CastError') {
         return next(
           new ValidationError(
             'Переданы некорректные данные для постановки/снятии лайка',
           ),
         );
       }
-      return next(new InternalServerError('Произошла ошибка на сервере'));
+      return next(err);
     });
 };
 
@@ -63,14 +62,14 @@ module.exports.likeCard = (req, res, next) => {
       return res.send(card);
     })
     .catch((err) => {
-      if (err.kind === 'ObjectId') {
+      if (err.name === 'CastError') {
         return next(
           new ValidationError(
             'Переданы некорректные данные для постановки/снятии лайка',
           ),
         );
       }
-      return next(new InternalServerError('Произошла ошибка на сервере'));
+      return next(err);
     });
 };
 
@@ -87,13 +86,13 @@ module.exports.dislikeCard = (req, res, next) => {
       return res.send(card);
     })
     .catch((err) => {
-      if (err.kind === 'ObjectId') {
+      if (err.name === 'CastError') {
         return next(
           new ValidationError(
             'Переданы некорректные данные для постановки/снятии лайка',
           ),
         );
       }
-      return next(new InternalServerError('Произошла ошибка на сервере'));
+      return next(err);
     });
 };

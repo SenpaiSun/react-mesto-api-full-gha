@@ -2,7 +2,6 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const ConflictError = require('../errors/ConflictError');
-const InternalServerError = require('../errors/InternalServerError');
 const NotFoundError = require('../errors/NotFoundError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 const ValidationError = require('../errors/ValidationError');
@@ -56,7 +55,7 @@ module.exports.createUser = (req, res, next) => {
       if (err.code === 11000) {
         return next(new ConflictError('Такой Email уже зарегистрирован!'));
       }
-      return next(new InternalServerError('Произошла ошибка на сервере'));
+      return next(err);
     });
 };
 
@@ -80,12 +79,12 @@ module.exports.getUserById = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.kind === 'ObjectId') {
+      if (err.name === 'CastError') {
         return next(
           new ValidationError('Переданы некорректные данные для пользователя'),
         );
       }
-      return next(new InternalServerError('Произошла ошибка на сервере'));
+      return next(err);
     });
 };
 
@@ -112,7 +111,7 @@ module.exports.updateProfile = (req, res, next) => {
           ),
         );
       }
-      return next(new InternalServerError('Произошла ошибка на сервере.'));
+      return next(err);
     });
 };
 
@@ -139,7 +138,7 @@ module.exports.updateAvatar = (req, res, next) => {
           ),
         );
       }
-      return next(new InternalServerError('Произошла ошибка на сервере.'));
+      return next(err);
     });
 };
 
@@ -191,11 +190,6 @@ module.exports.getInfoUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.kind === 'ObjectId') {
-        return next(
-          new ValidationError('Переданы некорректные данные для пользователя'),
-        );
-      }
-      return next(new InternalServerError('Произошла ошибка на сервере.'));
+      next(err);
     });
 };

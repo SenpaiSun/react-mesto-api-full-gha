@@ -5,7 +5,6 @@ const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
-const bodyParser = require('body-parser');
 const { corsMiddleware } = require('./middlewares/cors');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
@@ -25,8 +24,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', { family: 4 });
 app.use(corsMiddleware);
 app.use(limiter);
 app.use(helmet());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -62,14 +61,12 @@ app.use(auth);
 app.use(cardsRouter);
 app.use(usersRouter);
 app.use(errorLogger);
-app.use('*', () => {
-  throw new NotFoundError('Некорректный URL');
-});
+app.use('*', () => NotFoundError('Некорректный URL'));
 app.use(errors());
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const status = err.status || 500;
-  const message = err.message || 'Ошибка на сервере';
+  const message = err.statusCode === 500 ? 'Ошибка на сервере' : err.message;
   res.status(status).json({ message });
 });
 app.listen(PORT, () => {
